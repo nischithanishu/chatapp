@@ -22,17 +22,19 @@ console.log('disconnected from server');
 // });
 
 socket.on('newMessage',function(message){
-console.log('newMessage',message);
+  var formattedTime = moment(message.createAt).format('h:mm a');
+//console.log('newMessage',message);
 var li = jQuery('<li></li>');
-li.text(`${message.from}: ${message.text}`);
+li.text(`${message.from}: ${formattedTime} ${message.text}`);
 
 jQuery('#message').append(li);
 });
 
 socket.on('newLocationMessage', function(message){
+    let formattedTime1 = moment(message.createAt).format('h:mm a');
   console.log('newMessage', message);
   var li = jQuery('<li></li>');
-  li.text(`${message.from}: ${message.text}`);
+  li.text(`${message.from}: ${formattedTime1} ${message.text}`);
 
   jQuery('#message').append(li);
 });
