@@ -17,20 +17,23 @@ app.use(express.static(publicPath));
 io.on('connection',(socket)=>{
 console.log('new user connected');
 
-// socket.emit('newMessage',{
-// from:'pooja',
-// text:'see you then',
-// createdAt:1234
-// });
-// socket.emit('newEmail',{
-// from:'pooja.h.gowda@gmail.com',
-// text:'hey this is pooja',
-// createAt:123
-// });
+ socket.emit('newMessage',{
+   from:'admin',
+   text:'welcome to chat app'
+ });
 
-// socket.on('createEmail',(newEmail)=>{
-// console.log('createEmail',newEmail);
-// });
+
+
+ socket.broadcast.emit('newMessage',{
+   from:'admin',
+   text:'welcome to new member joined ',
+   createAt:123
+ });
+
+
+
+
+
 
 socket.on('createMessage',(message)=>{
 console.log('create message',message);
@@ -40,6 +43,14 @@ text:message.text,
 createdAt:new Date().getTime()
 });
 });
+
+//
+// socket.broadcast.emit('newMessage',{
+//   from:message.from,
+//   text:message.text,
+//   createAt:new Date().getTime()
+// });
+// });
 
 socket.on('disconnect',()=>{
 console.log('user was disconnected');
