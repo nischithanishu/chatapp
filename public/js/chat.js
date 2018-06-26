@@ -1,5 +1,23 @@
 var socket=io();
 
+// function scrollToBottom(){
+//
+// var message = jQuery(#message);
+// var newMessage = message.children('li:last-child');
+// var clientHeight = message.prop('clientHeight');
+// var scrollTop = message.prop('scrollTop');
+// var scrollHeight = message.prop('scrollHeight');
+// var newMessageHeight = newMessage.innerHeight();
+// var lastMessageHeight = newMessage.prev().innerHeight();
+//
+//
+//
+// if(clientHeight + scrollTop + newMessageHeight + lastMessageHeight >= scrollHeight){
+//   console.log('should scroll');
+// }
+//
+// }
+
 socket.on('connect',function(){
 console.log('connected to server');
 // socket.emit('createEmail',{
@@ -31,6 +49,7 @@ var html=Mustache.render(template,{
 
 });
 jQuery('#message').append(html);
+// scrollToBottom();
 //   var formattedTime = moment(message.createAt).format('h:mm a');
 // //console.log('newMessage',message);
 // var li = jQuery('<li></li>');
@@ -58,6 +77,7 @@ socket.on('newLocationMessage', function(message){
 
     });
     jQuery('#message').append(html);
+    // scrollToBottom();
 //   var li = jQuery('<li></li>');
 //   var a = jQuery('<a target = "_blank">My current location</a>');
 //   var html=Mustache.render(template,{
